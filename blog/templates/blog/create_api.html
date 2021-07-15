@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+ <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <img class="img-fluid" src="{{ img }}">
+                <button class="btn btn-outline-secondary" type="submit">Save</button>
+            </div>
+          </div>
+        </article>
+ {% endblock content %}

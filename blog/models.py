@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
@@ -10,3 +11,18 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ApiCall(models.Model):
+    name = models.CharField(max_length=1000)
+    likes = models.BooleanField(default=False)
+    date_posted = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.name
+
+class Activity(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name

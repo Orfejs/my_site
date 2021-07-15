@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+ {% for apicall in apicalls %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <img class= "img-fluid" src="{{ apicall.name }}">
+            </div>
+
+          </div>
+        </article>
+     {% endfor %}
+{% endblock content %}
