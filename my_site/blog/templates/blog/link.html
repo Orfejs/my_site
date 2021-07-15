@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <h1>About Page</h1>
+    {% for apicall in apicalls %}
+    <article class="media content-section">
+      <div class="media-body">
+        <div class="article-metadata">
+         <img class="img-fluid" src="{{ apicall.name }}" alt="">
+         
+        </div>
+        
+      </div>
+    </article>
+{% endfor %}
+  
+{% endblock content %}

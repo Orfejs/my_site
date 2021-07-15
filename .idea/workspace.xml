@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7cb54383-a086-4ec0-989e-e217f7547982" name="Default Changelist" comment="">
+    <list default="true" id="7cb54383-a086-4ec0-989e-e217f7547982" name="Default Changelist" comment="unsplash api added">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_site/blog/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_site/blog/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_site/blog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_site/blog/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_site/blog/templates/blog/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_site/blog/templates/blog/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_site/blog/templates/blog/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_site/blog/templates/blog/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_site/blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_site/blog/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_site/blog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_site/blog/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_site/my_site/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_site/my_site/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_site/my_site/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_site/my_site/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_site/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/my_site/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +29,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../to-do-app-master" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -36,6 +41,30 @@
       <option name="presentableId" value="Default" />
       <updated>1625158542419</updated>
     </task>
+    <task id="LOCAL-00001" summary="unsplash api added">
+      <created>1625566998623</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1625566998623</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="unsplash api added" />
+    <option name="LAST_COMMIT_MESSAGE" value="unsplash api added" />
   </component>
 </project>
