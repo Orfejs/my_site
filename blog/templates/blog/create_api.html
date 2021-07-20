@@ -1,12 +1,9 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
- <article class="media content-section">
-          <div class="media-body">
-            <div class="article-metadata">
-              <img class="img-fluid" src="{{ img }}">
-                <button class="btn btn-outline-secondary" type="submit">Save</button>
-            </div>
-          </div>
-        </article>
+  <div class="content-section">
+      <img class= "img-fluid" src="{{ img }}" alt="">
+<button class="btn btn-outline-secondary" method="POST" type="submit" name="send1">Save</button>
+<button class="btn btn-outline-secondary" type="submit">Next</button>
+    </div>
  {% endblock content %}

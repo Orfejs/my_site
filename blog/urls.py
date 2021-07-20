@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (
     PostListView,
-    PostDetailView
+    PostDetailView,
 )
 from . import views
 
@@ -11,5 +11,6 @@ urlpatterns = [
     path('about/', views.about, name='blog-about'),
     path('create/', views.create, name='blog-create'),
     path('activity/', views.activity, name='blog-activity'),
-    path('favorite/', views.favorite, name='blog-favorite')
+    path('favorite/', views.favorite, name='blog-favorite'),
+    path('apinew/', views.register, name='blog-apicreate')
    ]
