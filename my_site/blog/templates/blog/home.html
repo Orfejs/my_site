@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% block content %}
+
     {% for post in posts %}
         <article class="media content-section">
           <div class="media-body">
@@ -11,16 +12,18 @@
             <p class="article-content">{{ post.content }}</p>
           </div>
         </article>
+
     {% endfor %}
+
     <!-- <form action="" method = "post">
       {% csrf_token %}
       {{form}}
       <input type="text" type="submit">
     </form> -->
-    <form action="" method="POST">
-      {% csrf_token %}
-      {{form}}
-      <!-- <input id="your_name" type="text" name="{{ img }}"> -->
-      <input type="submit" value="OK">
-  </form>
+<!--    <form action="" method="POST">-->
+<!--      {% csrf_token %}-->
+<!--      {{form}}-->
+<!--      &lt;!&ndash; <input id="your_name" type="text" name="{{ img }}"> &ndash;&gt;-->
+<!--      <input type="submit" value="OK">-->
+<!--  </form>-->
 {% endblock content %}

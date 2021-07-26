@@ -25,6 +25,7 @@ class ApiCall(models.Model):
     def get_absolute_url(self):
         return reverse('blog-favorite')
 
+
 class Activity(models.Model):
     name = models.CharField(max_length=100)
 

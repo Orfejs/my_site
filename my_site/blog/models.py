@@ -17,12 +17,21 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
+
 class ApiCall(models.Model):
     name = models.CharField(max_length=100)
     date_posted = models.DateTimeField(default=timezone.now)
+    favorite = models.BooleanField(default=False)
     
     def __str__(self):
         return self.name
     
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
+
+
+class Activity(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
