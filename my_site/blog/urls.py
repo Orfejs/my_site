@@ -1,16 +1,18 @@
-from django.urls import path
+from django.urls import path, include
 from .views import (
     PostListView,
     PostDetailView,
     AjaxHandlerView,
    )
 from . import views
+from rest_framework import routers
 
-
-
+router = routers.DefaultRouter()
+router.register('calls', views.ApiCallView)
 
 
 urlpatterns = [
+    path('myapi/', include(router.urls)),
     path('', PostListView.as_view(), name='blog-home'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     # path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),

@@ -9,9 +9,13 @@ import requests
 from .models import Post
 from .models import ApiCall
 from .models import Activity
+from rest_framework import viewsets
+from .serializers import ApiCallSerializer
 
 
-
+class ApiCallView(viewsets.ModelViewSet):
+    queryset = ApiCall.objects.all()
+    serializer_class = ApiCallSerializer
 # def home(request):
     
 #     form = ApiCallForm()
