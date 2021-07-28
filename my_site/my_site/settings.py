@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'dajaxice',
-    'dajax',
     'blog.apps.BlogConfig',
     'crispy_forms',
     'django.contrib.admin',

@@ -19,7 +19,7 @@ class Post(models.Model):
 
 
 class ApiCall(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=1000)
     date_posted = models.DateTimeField(default=timezone.now)
     favorite = models.BooleanField(default=False)
     
@@ -27,7 +27,7 @@ class ApiCall(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk': self.pk})
+        return reverse('api-home', kwargs={'pk': self.pk})
 
 
 class Activity(models.Model):
