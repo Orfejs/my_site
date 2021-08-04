@@ -49,6 +49,7 @@ def about(request):
     }
                   )
 
+
 def create(request):
     response = requests.get(
         'https://api.unsplash.com/photos/random/?client_id=GvDLAzZDt1_Ba2E8l_DDiPNxlmJwKOTJbd5w5kZ-YH8&count=1')
@@ -73,9 +74,6 @@ def create(request):
 #     return render(request, 'blog/create_api.html', context)
 
 
-
-
-
 def activity(request):
     response1 = requests.get('https://www.boredapi.com/api/activity')
     task = response1.json()
@@ -86,6 +84,7 @@ def activity(request):
         'todo': random_task
 
     })
+
 
 def favorite(request):
     context = {

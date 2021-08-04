@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+{% block content %}
+  <article class="media content-section">
+        <div class="media-body">
+      <div class="article-metadata">
+        <img class="img-fluid" src="{{ object.name }}">
+                <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+      </div>
+      <h2 class="article-title">{{ object.id }}</h2>
+            <a href="{% url 'post-delete' apicall.id %}" class="rem btn btn-outline-danger">Remove</a>
+            <a href="{% url 'post-update' apicall.id %}" class="rem btn btn-outline-secondary">Update</a>
+    </div>
+  </article>
+{% endblock content %}

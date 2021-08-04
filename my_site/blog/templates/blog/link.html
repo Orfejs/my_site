@@ -2,15 +2,26 @@
 {% block content %}
 <h1>Your Selected Images</h1>
     {% for apicall in apicalls %}
-    <article class="media content-section">
-      <div class="media-body">
-        <div class="article-metadata">
-         <img class="img-fluid" src="{{ apicall.name }}" alt="">
-         
-        </div>
-        
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body">
+       <img class="img-fluid" src="{{ apicall.name }}" alt="">
+        <a href="{% url 'post-detail' apicall.id %}" class="btn btn-outline-secondary">Info</a>
       </div>
-    </article>
+    </div>
+  </div>
+</div>
+
+<!--    <article class="media content-section">-->
+<!--      <div class="media-body">-->
+<!--        <div class="article-metadata">-->
+<!--         <img class="img-fluid" src="{{ apicall.name }}" alt="">-->
+<!--         -->
+<!--        </div>-->
+<!--        -->
+<!--      </div>-->
+<!--    </article>-->
 {% endfor %}
   
 {% endblock content %}

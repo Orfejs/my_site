@@ -2,7 +2,10 @@ from django.urls import path, include
 from .views import (
     PostListView,
     PostDetailView,
+    PostDeleteView,
     AjaxHandlerView,
+    PostUpdateView,
+    ActView
    )
 from . import views
 from rest_framework.urlpatterns import format_suffix_patterns
@@ -18,12 +21,14 @@ urlpatterns = [
     path('apicalls/<int:pk>/', views.CallView.as_view(), name='api-home'),
     # path('', include(router.urls)),
     path('', PostListView.as_view(), name='blog-home'),
-    path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
+    path('picture/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
+    path('picture/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
+    path('picture/<int:pk>/delete', PostDeleteView.as_view(), name='post-delete'),
     # path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
-    path('about/', views.about, name='blog-about'),
-    path('create/', views.act1, name='blog-create'),
+    # path('about/', views.about, name='blog-about'),
+    path('create/', ActView.as_view(), name='blog-create'),
     path('favorite/', views.link_view, name='blog-favorite'),
-    path('ajax/', AjaxHandlerView.as_view(), name='blog-ajax'),
+    path('select/', AjaxHandlerView.as_view(), name='blog-ajax'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

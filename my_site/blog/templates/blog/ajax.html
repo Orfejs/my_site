@@ -1,6 +1,28 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <h1>ajax Page</h1>
+ <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+             <img id="mypic" class="img-fluid img-thumbnail max-width: 100%;" src="">
+        </div>
 
+      </div>
+    </main>
+<div class="col-md-4">
+          <div class="content-section">
+            <h3>Get Picture</h3>
+             <div class="list-group">
+              <button class="fav btn btn-outline-secondary" type="submit">Next Pic</button>
+<!--              <img id="mypic" src="">-->
+
+              <div class="list-group">
+{% csrf_token %}
+<button class="add btn btn-outline-secondary" type="submit">Save</button>
+
+                  </div>
+
+                </div>
+            </div>
+        </div>
  {% endblock content %}

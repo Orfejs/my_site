@@ -1,9 +1,14 @@
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import (get_object_or_404,
+                              render,
+                              redirect,
+                                HttpResponseRedirect)
 from django.views.generic import (
     View,
     ListView,
-    DetailView
+    DetailView,
+    UpdateView,
+    DeleteView
     )
 import requests
 from django.http import Http404
@@ -18,7 +23,7 @@ from .serializers import ApiCallSerializer
 
 class ApiCallList(APIView):
     """
-    List all snippets, or create a new snippet.
+    List all apicalls, or create a new apicall.
     """
     def get(self, request, format=None):
         apicalls = ApiCall.objects.all()
@@ -26,55 +31,30 @@ class ApiCallList(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        print(request.GET)
-
         serializer = ApiCallSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    # def post(self, request, ):
+    #     apicall_data = request.data
+    #     print(apicall_data)
+    #
+    #     new_apicall = ApiCall.objects.create(apicallid=apicall_data["20"], apicall_name=apicall_data[
+    #         "somevalue"], favorite=apicall_data["True"])
+    #
+    #     print(new_apicall)
+    #
+    #     new_apicall.save()
+    #
+    #     serializer = ApiCallSerializer(new_apicall)
+    #
+    #     return Response(serializer.data)
+    #
+
 
 class CallView(APIView):
-
-    def get_object(self, pk):
-        try:
-            return ApiCall.objects.get(pk=pk)
-        except ApiCall.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk, format=None):
-        apicall = self.get_object(pk)
-        serializer = ApiCallSerializer(apicall)
-        return Response(serializer.data)
-
-    def get(self, request, *args, **kwargs):
-
-        try:
-            id = request.query_params["id"]
-            if id != None:
-                apicall = ApiCall.objects.get(id=id)
-                serializer = ApiCallSerializer(apicall)
-        except:
-            apicalls = self.get_queryset()
-            serializer = ApiCallSerializer(apicalls, many=True)
-
-        return Response(serializer.data)
-
-    def post(self, request, *args, **kwargs):
-        apicall_data = request.data
-
-        new_apicall = ApiCall.objects.create(apicallid=apicall_data["20"], apicall_name=apicall_data[
-            "somevalue"], favorite=apicall_data["True"])
-
-        print(new_apicall)
-
-
-        new_apicall.save()
-
-        serializer = ApiCallSerializer(new_apicall)
-
-        return Response(serializer.data)
 
     def get_object(self, pk):
         try:
@@ -130,6 +110,7 @@ class CallView(APIView):
 #     return render(request, 'blog/home.html', context)
 
 
+
 class PostListView(ListView):
     model = Post
     template_name = 'blog/home.html'  # <app>/<model>_<viewtype>.html
@@ -138,14 +119,32 @@ class PostListView(ListView):
 
 
 class PostDetailView(DetailView):
-    model = Post
+    model = ApiCall
+
+
+class PostUpdateView(UpdateView):
+    model = ApiCall
+    fields = ['favorite']
+    success_url = '/'
+
+
+class PostDeleteView(DeleteView):
+    model = ApiCall
+    success_url = '/'
+
+    def test_func(self):
+        apicall = self.get_object()
+        print(apicall)
+        if self.request.user == apicall.id:
+            return True
+        return False
 
 
 class ApiCallView(DetailView):
     model = ApiCall
     template_name = 'blog/link.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'apicalls'
-    ordering = ['-date_posted']
+    ordering = 'date_posted'
 
 
 class AjaxHandlerView(View):
@@ -159,7 +158,7 @@ class AjaxHandlerView(View):
             # text = request.GET.get('test')
         if request.is_ajax():
             return JsonResponse({'question': my_pic}, status=200)
-        return render(request, 'blog/home.html')
+        return render(request, 'blog/ajax.html')
 
     def post(self, request):
         card = request.POST.get('test2')
@@ -168,64 +167,35 @@ class AjaxHandlerView(View):
         return JsonResponse({'good': card}, status=200)
 
 
-def act1(request):
-    # car = request.POST.get('test3')
-    response1 = requests.get('https://www.boredapi.com/api/activity')
-    task = response1.json()
-    random_task = task['activity']
-    c = Activity(name=random_task)
-    c.save()
+class ActView(View):
+    def get(self, request):
+        response1 = requests.get('https://www.boredapi.com/api/activity')
+        task = response1.json()
+        random_task = task['activity']
+        return render(request, 'blog/create.html', {
+               'todo': random_task
+                })
 
-    return render(request, 'blog/create.html', {
-            'todo': random_task
-            })
-
-
-def about(request):
-    response = requests.get('https://api.unsplash.com/photos/random/?client_id=GvDLAzZDt1_Ba2E8l_DDiPNxlmJwKOTJbd5w5kZ-YH8&count=1')
-    picture = response.json()
-    my_picture = picture[0]
-    random_pic = my_picture['urls']
-    return render(request, 'blog/about.html', {
-        'img': random_pic['regular']
-
-        
-    })
-
-
-# def activity(request):
-#
-
-
+    def post(self, request):
+        front = request.POST.get('test3')
+        print(front)
+        c = Activity(name=front)
+        c.save()
+        return JsonResponse({'well': front}, status=200)
 
 
 def link_view(request):
     context = {
-        'apicalls': ApiCall.objects.filter(favorite=True)
+        'apicalls': ApiCall.objects.filter(favorite=True).order_by('-date_posted')
     }
     return render(request, 'blog/link.html', context)
-#     # context = {
-#     #     'posts': Post.objects.all()
-#     # }
-    # name = request.GET.get('name')
 
-    # new_entry = {
-    #     'name': name,
 
-    # }
-    # ApiCall.objects.create(**new_entry)
-    # return render(request, 'blog/create.html')
- 
- 
- 
- 
- 
- 
- 
-    # form = ApiCallForm(request.POST or None)
-    # if form.is_valid():
-    #     form.save()
+def apicall_delete(request):
+    cat = request.POST.get('test4')  # Get your current cat
+    print(cat)
+    if request.method == 'POST':         # If method is POST,
+        cat.delete()                     # delete the cat.
+        return redirect('/')             # Finally, redirect to the homepage.
 
-    # context = {
-    #     'form': form
-    # })
+    return render(request, 'blog/link.html', {'cat': cat})
