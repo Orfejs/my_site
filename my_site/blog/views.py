@@ -25,7 +25,7 @@ class ApiCallList(APIView):
     """
     List all apicalls, or create a new apicall.
     """
-    def get(self, request, format=None):
+    def get(self, format=None):
         apicalls = ApiCall.objects.all()
         serializer = ApiCallSerializer(apicalls, many=True)
         return Response(serializer.data)
@@ -36,22 +36,6 @@ class ApiCallList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    # def post(self, request, ):
-    #     apicall_data = request.data
-    #     print(apicall_data)
-    #
-    #     new_apicall = ApiCall.objects.create(apicallid=apicall_data["20"], apicall_name=apicall_data[
-    #         "somevalue"], favorite=apicall_data["True"])
-    #
-    #     print(new_apicall)
-    #
-    #     new_apicall.save()
-    #
-    #     serializer = ApiCallSerializer(new_apicall)
-    #
-    #     return Response(serializer.data)
-    #
 
 
 class CallView(APIView):
@@ -71,44 +55,6 @@ class CallView(APIView):
         apicall = self.get_object(pk)
         apicall.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-    # def get(self, request, format=None):
-    #     apicalls = ApiCall.objects.all()
-    #     serializer = ApiCallSerializer(apicalls, many=True)
-    #     return Response(serializer.data)
-
-
-
-# class ApiCallView(viewsets.ViewSet):
-#     def list(self, request):
-#         """Return a hello message."""
-#
-#         a_viewset = [
-#             'Uses actions (list, create, retrieve, update, partial_update)',
-#             'Automatically maps to URLS using Routers',
-#             'Provides more functionality with less code',
-#         ]
-#
-#         return Response({'message': 'Hello!', 'a_viewset': a_viewset})
-
-
-# def home(request):
-    
-#     form = ApiCallForm()
-    
-#     if request.method == 'POST':
-#         print(request.POST)
-#         form = ApiCallForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/')
-
-#     context = {'form':form}
-#     # context = {
-#     #     'posts': Post.objects.all()
-#     # }
-#     return render(request, 'blog/home.html', context)
-
 
 
 class PostListView(ListView):
@@ -171,6 +117,7 @@ class ActView(View):
     def get(self, request):
         response1 = requests.get('https://www.boredapi.com/api/activity')
         task = response1.json()
+        print(task)
         random_task = task['activity']
         return render(request, 'blog/create.html', {
                'todo': random_task
@@ -191,11 +138,17 @@ def link_view(request):
     return render(request, 'blog/link.html', context)
 
 
-def apicall_delete(request):
-    cat = request.POST.get('test4')  # Get your current cat
-    print(cat)
-    if request.method == 'POST':         # If method is POST,
-        cat.delete()                     # delete the cat.
-        return redirect('/')             # Finally, redirect to the homepage.
+class JokeView(View):
+    template_name = 'blog/jokes.html'
 
-    return render(request, 'blog/link.html', {'cat': cat})
+    def get(self, request):
+        response1 = requests.get('http://3.67.124.158:8000/api')
+        joke = response1.json()
+        # one = joke[2]['joke']
+        # fin = joke[0]
+        # print(fin)
+        context = {
+            'jokes': joke
+        }
+
+        return render(request, 'blog/jokes.html', context)

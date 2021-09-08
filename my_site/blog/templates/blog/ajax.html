@@ -1,14 +1,14 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
- <main role="main" class="container">
+ <main role="main" class="container" style="display: flex;">
       <div class="row">
-        <div class="col-md-8">
-             <img id="mypic" class="img-fluid img-thumbnail max-width: 100%;" src="">
+        <div class="col-md-7">
+             <img id="mypic" class="img-fluid img-thumbnail max-width: 100%;" src="https://images.pexels.com/photos/5721878/pexels-photo-5721878.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
         </div>
 
       </div>
-    </main>
+
 <div class="col-md-4">
           <div class="content-section">
             <h3>Get Picture</h3>
@@ -25,4 +25,5 @@
                 </div>
             </div>
         </div>
+</main>
  {% endblock content %}

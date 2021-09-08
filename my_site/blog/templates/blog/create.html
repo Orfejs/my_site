@@ -1,5 +1,7 @@
 {% extends "blog/base.html" %}
 {% block content %}
+
+
 <h1 id="myAct">{{ todo }}</h1>
         {% csrf_token %}
         <button class="act btn btn-outline-secondary" type="submit">Save</button>

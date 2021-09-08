@@ -1,27 +1,25 @@
 {% extends "blog/base.html" %}
 {% block content %}
+
+
+
 <h1>Your Selected Images</h1>
-    {% for apicall in apicalls %}
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card">
-      <div class="card-body">
-       <img class="img-fluid" src="{{ apicall.name }}" alt="">
+    <div style="display: flex; align-content: flex-start; flex-wrap: wrap; align-items: center;">
+{% for apicall in apicalls %}
+<div class="col-sm-4">
+  <div class="card" style="object-fit: cover; vertical-align: bottom;">
+         <div class="card-body">
+
+         <img class="img-fluid" src="{{ apicall.name }}" alt="">
         <a href="{% url 'post-detail' apicall.id %}" class="btn btn-outline-secondary">Info</a>
-      </div>
+
     </div>
   </div>
 </div>
-
-<!--    <article class="media content-section">-->
-<!--      <div class="media-body">-->
-<!--        <div class="article-metadata">-->
-<!--         <img class="img-fluid" src="{{ apicall.name }}" alt="">-->
-<!--         -->
-<!--        </div>-->
-<!--        -->
-<!--      </div>-->
-<!--    </article>-->
 {% endfor %}
+</div>
+
+
+
   
 {% endblock content %}

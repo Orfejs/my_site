@@ -40,22 +40,6 @@ $(".add").click(function(){
     )
 });
 
-$(".rem").click(function(){
-    $.ajax({
-        url: '/favorite/',
-        type: 'post',
-        data: {
-            test4: 'testvalue',
-            csrfmiddlewaretoken: csrf
-        },
-        success: function(response) {
-             console.log(response.good)
-             alert("Picture saved")
-
-    }}
-    )
-});
-
 $(".act").click(function(){
     $.ajax({
         url: '/create/',
@@ -71,3 +55,4 @@ $(".act").click(function(){
 }
 )
 })
+

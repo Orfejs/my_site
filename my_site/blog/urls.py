@@ -5,7 +5,8 @@ from .views import (
     PostDeleteView,
     AjaxHandlerView,
     PostUpdateView,
-    ActView
+    ActView,
+    JokeView,
    )
 from . import views
 from rest_framework.urlpatterns import format_suffix_patterns
@@ -29,6 +30,7 @@ urlpatterns = [
     path('create/', ActView.as_view(), name='blog-create'),
     path('favorite/', views.link_view, name='blog-favorite'),
     path('select/', AjaxHandlerView.as_view(), name='blog-ajax'),
+    path('jokes/', JokeView.as_view(), name='blog-jokes'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
